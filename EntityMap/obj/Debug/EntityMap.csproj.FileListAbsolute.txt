@@ -1,0 +1,4 @@
+C:\CODE\trunk\EntityMap\EntityMap\bin\Debug\EntityMap.dll
+C:\CODE\trunk\EntityMap\EntityMap\bin\Debug\EntityMap.pdb
+C:\CODE\trunk\EntityMap\EntityMap\obj\Debug\EntityMap.dll
+C:\CODE\trunk\EntityMap\EntityMap\obj\Debug\EntityMap.pdb
