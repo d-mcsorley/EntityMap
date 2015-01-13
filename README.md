@@ -2,7 +2,7 @@
 
 # EntityMap
 
-EntityMap is a library that starts with the database then works backward. In some ways it represents an evolution of thought that has went full circle and arrived back at "it's just data...why are we complicating this?". There are good and compelling reasons for object orientation however I've become increasingly uneasy about it's use large business applications where ultimately the aim is to manage data. 
+EntityMap is a library that starts with the database then works backward. In some ways it represents an evolution of thought that has went full circle and arrived back at "it's just data...why are we complicating this?". There are good and compelling reasons for object orientation however I've become increasingly uneasy about its use large business applications where ultimately the aim is to manage data. 
 
 There is nothing particularly radical about EntityMap's approach to managing data. In fact it's been heavily influenced by working with applications like Microsoft CRM and when I really think about it, takes me back to my days at college using Oracle Forms. 
 
