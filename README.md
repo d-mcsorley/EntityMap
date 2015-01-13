@@ -14,7 +14,7 @@ So the primary goal of EntityMap is to treat data as data. You DON'T need an obj
 
 ##How does it work?##
 
-EntityMap treats every database as an "entity", it can inspect a database table and build an entity template which in effect is simply a collection of properties. The initial concept behind EntityMap was "here's a dictionary, throw it into the database".
+EntityMap treats every database table as an "entity", it can inspect a database table and build an entity template which in effect is simply a collection of properties. The initial concept behind EntityMap was "here's a dictionary, throw it into the database".
 
 ###Simple Add###
 
