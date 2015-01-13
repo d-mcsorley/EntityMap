@@ -25,7 +25,7 @@ __SetValue__ is then called on the entity similar to adding to a dictionary. Int
 __Create__ is then called which generates the sql needed to insert the data into the database.
 
 ```csharp
-using (IEntitySession session = new EntitySession(connectionString)) {
+using (IEntitySession session = new SqlEntitySession(connectionString)) {
      Entity personEntity = session.CreateEntity("Person");
 
      personEntity.SetValue("Id", Guid.NewGuid());
