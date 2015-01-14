@@ -16,7 +16,7 @@ So the primary goal of EntityMap is to treat data as data. You DON'T need an obj
 
 EntityMap treats every database table as an "entity", it can inspect a database table and build an entity template which in effect is simply a collection of properties. The initial concept behind EntityMap was "here's a dictionary, throw it into the database".
 
-###Simple Add###
+###Add###
 
 In the example below you'll see __CreateEntity__ being called, this is what inspects the table __Person__ (first looking to see if the table has been cached) and returns an empty entity template (looking to change this name going forward as it could lead to confusion).
 
@@ -34,5 +34,50 @@ using (IEntitySession session = new SqlEntitySession(connectionString)) {
      personEntity.SetValue("DOB", DateTime.Parse("1980-01-01"));
 
      session.Create(personEntity);
+}
+```
+
+###Retrieve###
+Under the hood EntityMap uses query objects to retrieve records allowing developers to write their own should they need customised queries. Built in are two standard queries for retrieving a single record by "Id" and retrieving multiple records with pagination and ordering.
+
+####QuerySingle####
+
+```csharp
+using (IEntitySession session = new SqlEntitySession(connectionString)) {
+     Entity person = session.Retrieve("Person", new Guid(" ... "));
+}
+```
+
+####QueryMultiple####
+
+```csharp
+using (IEntitySession session = new SqlEntitySession(connectionString)) {
+     IList<OrderExpression> orderExpressions = new List<OrderExpression>();
+     orderExpressions.Add(new OrderExpression("FirstName", OrderType.ASC));
+     
+     List<Entity> entityCollection = session.RetrieveMultiple("Person", 1, 50, orderExpressions).ToList();
+}
+```
+
+The __pageNumber__ parameter starts at 1 rather than a zero based index. At the moment you must specify at least one __OrderExpression__ value, I'll be looking to clean up this syntax at a later date.
+
+####Custom Query####
+
+For custom queries a developer can implement their own query object by implementing the IQuery interface and extending the QueryBase class. By implementing the __GetQuery__ method you only need to return the SQL to be used in the query, the base class handles the rest  :-
+
+```csharp
+public class CustomQuery : QueryBase, IQuery {
+     protected override string GetQuery(Entity entity) {
+          return "SELECT * FROM Person WHERE FirstName LIKE 'J%'";
+     }
+}
+```
+
+Then to use this query object :-
+
+```csharp
+using (IEntitySession session = new SqlEntitySession(connectionString)) {
+     CustomQuery customQuery = new CustomQuery();
+     List<Entity> entityCollection = customQuery.GetResult(session).ToList();
 }
 ```
