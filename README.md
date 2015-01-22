@@ -10,11 +10,11 @@ The nature of business means that business applications tend to be bloated. If i
 
 Once you accept this truth and the subsequent truth that the business isn't about to tear up its long established data and processes so you can write nice clean object hierarchies against a beautifully organised, third normal form normalised database the happier you'll be. Now this isn't to say you shouldn't do everything in your power to organise and streamline data, to eliminate duplication of data and inefficiencies where you find them, just be prepared to be told "NO" when it threatens to interfere with some long established process the business holds dear.
 
-So the primary goal of EntityMap is to treat data as data. You DON'T need an object for every table in your database. If you do create an object for every table (or rather business concept) you'll soon end up with a sprawling, unmanageable domain model backed by an equally sprawling and unmanageable ORM layer.
+So the primary goal of EntityMap is to treat data as data. Rather than to create an object for every table in your database (or rather business concept) EntityMap attempts to interact with the database on a more holistic level.
 
 ##How does it work?##
 
-EntityMap treats every database table as an "entity", it can inspect a database table and build an entity template which in effect is simply a collection of properties. The initial concept behind EntityMap was "here's a dictionary, throw it into the database".
+EntityMap treats every database table as an "entity", it can inspect a database table and build an entity template which in effect is simply a collection of properties. The initial concept behind EntityMap was "here's a dictionary, throw it into the database". The template object that is generated knows internally the property name (the database column name) and the Type that can be accepted as a value. Each table is "lazily" inspected as and when you interact with the table and the resulting template is cached for future use.
 
 ###Add###
 
